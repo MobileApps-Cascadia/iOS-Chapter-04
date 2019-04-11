@@ -24,6 +24,13 @@ struct Student{
             _password = newValue
         }
     }
+    
+    //one computed property
+    var userName:String {
+         let first3 = studentID.prefix(3)
+        return "\(lastName) \(first3)"
+        }
+
 }
 
 var Ian = Student(firstName: "Ian", lastName:"Bansenauer", studentID: "920111123", _password: nil)
@@ -32,3 +39,4 @@ print("Initial password: " + Ian.password)
 //Set Password
 Ian.password = "testPassword"
 Ian.password = "Fabul0_346"
+var userName = Ian.userName
