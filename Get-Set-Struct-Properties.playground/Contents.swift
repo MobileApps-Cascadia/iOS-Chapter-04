@@ -4,6 +4,7 @@ struct Student{
     var firstName:String
     var lastName:String
     var studentID:String
+    var birthYear:Int
     var _password:String? {
         didSet{
             print("Your password was changed from \(oldValue) to \(_password!)")
@@ -24,11 +25,13 @@ struct Student{
             _password = newValue
         }
     }
+    var age:Int { return 2019 - birthYear}
 }
 
-var Ian = Student(firstName: "Ian", lastName:"Bansenauer", studentID: "920111123", _password: nil)
+var Ian = Student(firstName: "Ian", lastName:"Bansenauer", studentID: "920111123", birthYear: 1998 ,_password: nil)
 
 print("Initial password: " + Ian.password)
+print(Ian.age)
 //Set Password
 Ian.password = "testPassword"
 Ian.password = "Fabul0_346"
