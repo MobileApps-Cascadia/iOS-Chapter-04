@@ -11,6 +11,10 @@ struct Student{
     }
     // Computed Properties
     var fullName:String { return "\(firstName) \(lastName)"}
+    
+    // New Student Username
+    var username:String { return "\(firstName.prefix(1))\(lastName)" }
+    
     var password:String {
         get
         {
