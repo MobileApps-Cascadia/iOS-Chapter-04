@@ -17,6 +17,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     // Keyboard disappears when tapping the screen somewhere else
     @IBAction func dismissKeyboard(_ sender: AnyObject) {
         fahrenheitTextField.resignFirstResponder()
+        celsiusTextField.resignFirstResponder()
         updateTemperatureLabel()
     }
     // DELEGATE METHOD : Review each character typed to decide to keep it (true) or not (false)
@@ -94,8 +95,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
             celsiusTextField.text = numberFormatter.string(from: NSNumber(value: fVal.value))
         }
         else {
-            celsiusTextField.text = " "
-            fahrenheitTextField.text = " "
+            celsiusTextField.text = ""
+            fahrenheitTextField.text = ""
         }
     }
     // Limits the number of decimal places in the output label to 1
