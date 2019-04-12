@@ -8,7 +8,7 @@ class ConversionViewController: UIViewController , UITextFieldDelegate {
     
     @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
-    
+    //class var alphanumerics: CharacterSet { get }
     let color1 = UIColor(red: 0.6,
                          green: 0.6,
                          blue: 0.4,
@@ -30,8 +30,9 @@ class ConversionViewController: UIViewController , UITextFieldDelegate {
         
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
+        let existingTextHasLetters = string.rangeOfCharacter(from: NSCharacterSet.letters)
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
+        if (existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil ) || ( existingTextHasLetters != nil){
             return false
         } else {
             return true
