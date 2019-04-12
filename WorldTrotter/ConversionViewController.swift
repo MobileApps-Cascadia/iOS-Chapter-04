@@ -4,20 +4,20 @@
 
 import UIKit
     // TODO: Mark the ViewController as conforming to the UITextFieldDelegate Protocol
-class ConversionViewController: UIViewController, UITextFieldDelegate { //, UITextFieldDelegate {
+class ConversionViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var celsiusLabel: UILabel!
-    @IBOutlet var textField: UITextField!
+    @IBOutlet var fahrenheitTextField: UITextField!
+    @IBOutlet var celsiusTextField: UITextField!
     
     //ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateCelsiusLabel()
+        updateTemperatureLabel()
     }
     // Keyboard disappears when tapping the screen somewhere else
     @IBAction func dismissKeyboard(_ sender: AnyObject) {
-        textField.resignFirstResponder()
-        updateCelsiusLabel()
+        fahrenheitTextField.resignFirstResponder()
+        updateTemperatureLabel()
     }
     // DELEGATE METHOD : Review each character typed to decide to keep it (true) or not (false)
     // TODO: Modify code to reject (return false) if it finds any letters in the replacement string
@@ -48,40 +48,54 @@ class ConversionViewController: UIViewController, UITextFieldDelegate { //, UITe
     // TODO: Add and modify the method to build expectation for the output by changing the celsiusLabel when the input field is selected
     // modify the celsiusLabel text to be a single question mark
     // modify the celsiusLabel color to be 60% red, 60% green, and 40% blue (refer to the Developer Documentation for UIColor)
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        celsiusLabel.textColor = UIColor.init(red: 0.60, green: 0.60, blue: 0.40, alpha: 100)
-        celsiusLabel.text = "?"
-    }
+    //func textFieldDidBeginEditing(_ textField: UITextField) {
+    //    celsiusLabel.textColor = UIColor.init(red: 0.60, green: 0.60, blue: 0.40, alpha: 100)
+    //    celsiusLabel.text = "?"
+    //}
     
     // EVENT HANDLER METHOD : Called when TextField is Changed (notice the optional binding)
     @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
-        if let text = textField.text, let value = Double(text) {
+        if let text = fahrenheitTextField.text, let value = Double(text) {
             fahrenheitValue = Measurement(value: value, unit: .fahrenheit)
         } else {
             fahrenheitValue = nil
         }
     }
+    
+    // EVENT HANDLER METHOD : Called when TextField is Changed (notice the optional binding)
+    @IBAction func celsiusFieldEditingChanged(_ textField: UITextField) {
+        if let text = celsiusTextField.text, let value = Double(text) {
+            celsiusValue = Measurement(value: value, unit: .celsius)
+        } else {
+            celsiusValue = nil
+        }
+    }
+    
     //Stored Properties for Fahrenheit Temperature Measurement w/Observer
     var fahrenheitValue: Measurement<UnitTemperature>? {
         didSet { // this property observer will run after the property is assigned a value
-            updateCelsiusLabel()
+            updateTemperatureLabel()
         }
     }
     //Computed Property for Celsius Temperature Measurement (Read only property - getter without setter)
     var celsiusValue: Measurement<UnitTemperature>? {
-        if let fahrenheitValue = fahrenheitValue {
-            return fahrenheitValue.converted(to: .celsius)
-        } else {
-            return nil
+        didSet {
+            updateTemperatureLabel()
         }
     }
     // Helper Functions
-    func updateCelsiusLabel() {
+    func updateTemperatureLabel() {
         if let celsiusValue = celsiusValue {
-            celsiusLabel.text = numberFormatter.string(from: NSNumber(value: celsiusValue.value))
-        } else {
-            celsiusLabel.textColor = UIColor.red
-            celsiusLabel.text = "???"
+            let cVal = celsiusValue.converted(to: .fahrenheit)
+            fahrenheitTextField.text = numberFormatter.string(from: NSNumber(value: cVal.value))
+        }
+        else if let fahrenheit = fahrenheitValue{
+            let fVal = fahrenheit.converted(to: .celsius)
+            celsiusTextField.text = numberFormatter.string(from: NSNumber(value: fVal.value))
+        }
+        else {
+            celsiusTextField.text = " "
+            fahrenheitTextField.text = " "
         }
     }
     // Limits the number of decimal places in the output label to 1
