@@ -24,6 +24,7 @@ struct Student{
             _password = newValue
         }
     }
+    var student_id:String { return studentID }
 }
 
 var Ian = Student(firstName: "Ian", lastName:"Bansenauer", studentID: "920111123", _password: nil)
@@ -32,3 +33,4 @@ print("Initial password: " + Ian.password)
 //Set Password
 Ian.password = "testPassword"
 Ian.password = "Fabul0_346"
+print("Your Student ID is: " + Ian.student_id)
