@@ -26,7 +26,23 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
+       // let letter = CharacterSet.init(charactersIn: textField.text!)
+        
+        
+        let letters = NSCharacterSet.letters
+        let string1 = textField.text!
+            
+            //will return nil if no letters found and not reject - return true
+            //if letters found, will not return nil and reject and return false
+          /**  if string1.rangeOfCharacter(from: letters) == nil{
+                return true
+            }else{
+                return false
+            }*/
+        
+
+        
+        if string1.rangeOfCharacter(from: letters) != nil || existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
             return false
         } else {
             return true
