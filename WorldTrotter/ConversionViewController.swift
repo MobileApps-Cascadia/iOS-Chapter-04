@@ -26,11 +26,20 @@ class ConversionViewController: UIViewController, UITextFieldDelegate{ //, UITex
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
+        let rawText = textField.text
+        let letters = CharacterSet.letters
+        
+        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil{
             return false
         } else {
             return true
         }
+        
+        if let cleanText = rawText?.rangeOfCharacter(from: letters){
+            return false
+        }
+        return true
+        
     }
     // DELEGATE METHOD : textFieldDidBeginEditing - is called when the user selects the text field
     // TODO: Add and modify the method to build expectation for the output by changing the celsiusLabel when the input field is selected
