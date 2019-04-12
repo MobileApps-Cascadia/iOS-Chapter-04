@@ -4,10 +4,11 @@
 
 import UIKit
     // TODO: Mark the ViewController as conforming to the UITextFieldDelegate Protocol
-class ConversionViewController: UIViewController{ //, UITextFieldDelegate {
+class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
+    
     
     //ViewController Functions
     override func viewDidLoad() {
@@ -23,12 +24,18 @@ class ConversionViewController: UIViewController{ //, UITextFieldDelegate {
     //  (hint-use Documentation to find a NSCharacterSet collection for letters, and a String method that finds a range using a NSCharacterSet)
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        
+        let letters = CharacterSet.letters
+        let range = string.rangeOfCharacter(from: letters)
+        
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
+    
         
         if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
             return false
         } else {
+            if range != nil {return false}
             return true
         }
     }
@@ -39,6 +46,13 @@ class ConversionViewController: UIViewController{ //, UITextFieldDelegate {
 
     
     // EVENT HANDLER METHOD : Called when TextField is Changed (notice the optional binding)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        celsiusLabel.text = "?"
+        celsiusLabel.textColor = UIColor.init(red: 0.6, green: 0.6, blue: 0.4, alpha: 1000)
+    }
+    
+
+    
     @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
         if let text = textField.text, let value = Double(text) {
             fahrenheitValue = Measurement(value: value, unit: .fahrenheit)
