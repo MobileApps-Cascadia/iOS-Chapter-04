@@ -6,7 +6,7 @@ import UIKit
     // TODO: Mark the ViewController as conforming to the UITextFieldDelegate Protocol
 class ConversionViewController: UIViewController, UITextFieldDelegate {
     
-  //  @IBOutlet var celsiusLabel: UILabel!
+ 
     @IBOutlet var heat: UITextField!
     
     @IBOutlet var Celsius: UITextField!
@@ -14,11 +14,13 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     //ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateCelsiusLabel()
+       updateCelsiusLabel()
     }
     // Keyboard disappears when tapping the screen somewhere else
     @IBAction func dismissKeyboard(_ sender: AnyObject) {
         heat.resignFirstResponder()
+        Celsius.resignFirstResponder()
+        updateCelsiusLabel()
     }
     // DELEGATE METHOD : Review each character typed to decide to keep it (true) or not (false)
     // TODO: Modify code to reject (return false) if it finds any letters in the replacement string
@@ -47,10 +49,10 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
 
     
     // EVENT HANDLER METHOD : Called when TextField is Changed (notice the optional binding)
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        Celsius.text = "?"
+  //  func textFieldDidBeginEditing(_ textField: UITextField) {
+     //   Celsius.text = "?"
       //  celsiusLabel.textColor = UIColor.init(red: 0.6, green: 0.6, blue: 0.4, alpha: 1000)
-    }
+   // }
     
 
     
@@ -65,7 +67,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    @IBAction func CelsuisChanged(_ sender: UITextField) {
+    @IBAction func CelsuisChanged(_ textField: UITextField) {
         if let text = Celsius.text, let value = Double(text){
             celsiusValue = Measurement(value: value, unit: .celsius)
         }
@@ -104,8 +106,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
             
         else {
-            Celsius.text = " "
-            heat.text = " "
+            heat.text = ""
+            Celsius.text = ""
         }
     }
 
