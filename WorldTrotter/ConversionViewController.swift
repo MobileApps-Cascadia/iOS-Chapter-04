@@ -78,7 +78,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
             updateTemperatureLabel()
         }
     }
-    //Computed Property for Celsius Temperature Measurement (Read only property - getter without setter)
+    //Stored Property for Celsius Temperature Measurement (Read only property - getter without setter)
     var celsiusValue: Measurement<UnitTemperature>? {
         didSet {
             updateTemperatureLabel()
@@ -86,6 +86,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     }
     // Helper Functions
     func updateTemperatureLabel() {
+        
         if let celsiusValue = celsiusValue {
             let cVal = celsiusValue.converted(to: .fahrenheit)
             fahrenheitTextField.text = numberFormatter.string(from: NSNumber(value: cVal.value))
