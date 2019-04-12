@@ -33,12 +33,6 @@
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XU5-kP-97a">
-                                <rect key="frame" x="149" y="246" width="116.5" height="84"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
-                                <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="degrees Celsius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1J-M3-FYV">
                                 <rect key="frame" x="84.5" y="338" width="245.5" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
@@ -58,20 +52,33 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="80R-Kt-Ga7"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="value" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTW-DL-Tb7">
+                                <rect key="frame" x="82" y="246" width="250" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="NSG-Yo-TN1"/>
+                                </constraints>
+                                <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="celsiusFieldEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="e7V-fB-B1D"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="wTS-Zh-eJJ"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.95686274510000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="nEB-A3-sAJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="50M-hN-aQf"/>
                             <constraint firstItem="caI-Yo-5JC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5h1-dz-MAr"/>
-                            <constraint firstItem="L1J-M3-FYV" firstAttribute="top" secondItem="XU5-kP-97a" secondAttribute="bottom" constant="8" id="9HT-fw-FGf"/>
+                            <constraint firstItem="NTW-DL-Tb7" firstAttribute="top" secondItem="HM5-UI-kgl" secondAttribute="bottom" constant="8" id="CsL-J9-W2g"/>
                             <constraint firstItem="nEB-A3-sAJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EdV-2L-oOv"/>
-                            <constraint firstItem="XU5-kP-97a" firstAttribute="top" secondItem="HM5-UI-kgl" secondAttribute="bottom" constant="8" id="RUO-ci-yFN"/>
+                            <constraint firstItem="NTW-DL-Tb7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="O0R-pM-i4Y"/>
                             <constraint firstItem="nEB-A3-sAJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S2w-QJ-WYJ"/>
                             <constraint firstItem="HM5-UI-kgl" firstAttribute="top" secondItem="caI-Yo-5JC" secondAttribute="bottom" constant="8" id="dGl-t7-8jS"/>
                             <constraint firstItem="HM5-UI-kgl" firstAttribute="centerX" secondItem="caI-Yo-5JC" secondAttribute="centerX" id="jBt-2z-qDW"/>
                             <constraint firstItem="L1J-M3-FYV" firstAttribute="centerX" secondItem="caI-Yo-5JC" secondAttribute="centerX" id="lDm-VJ-a0w"/>
-                            <constraint firstItem="XU5-kP-97a" firstAttribute="centerX" secondItem="caI-Yo-5JC" secondAttribute="centerX" id="nwf-CB-qGK"/>
+                            <constraint firstItem="L1J-M3-FYV" firstAttribute="top" secondItem="NTW-DL-Tb7" secondAttribute="bottom" constant="8" id="sAF-6c-alU"/>
                             <constraint firstItem="caI-Yo-5JC" firstAttribute="top" secondItem="nEB-A3-sAJ" secondAttribute="bottom" constant="8" id="zHL-7A-dm5"/>
                         </constraints>
                         <connections>
@@ -79,7 +86,7 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="celsiusLabel" destination="XU5-kP-97a" id="d0M-9Z-nbJ"/>
+                        <outlet property="cTextField" destination="NTW-DL-Tb7" id="wxJ-gu-yGO"/>
                         <outlet property="textField" destination="nEB-A3-sAJ" id="Rex-iT-f5z"/>
                     </connections>
                 </viewController>

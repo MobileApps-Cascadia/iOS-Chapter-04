@@ -6,8 +6,10 @@ import UIKit
     // TODO: Mark the ViewController as conforming to the UITextFieldDelegate Protocol
 class ConversionViewController: UIViewController ,UITextFieldDelegate {
     
-    @IBOutlet var celsiusLabel: UILabel!
+    //@IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
+    @IBOutlet var cTextField: UITextField!
+    
     
     //ViewController Functions
     override func viewDidLoad() {
@@ -40,8 +42,8 @@ class ConversionViewController: UIViewController ,UITextFieldDelegate {
     // modify the celsiusLabel text to be a single question mark
     // modify the celsiusLabel color to be 60% red, 60% green, and 40% blue (refer to the Developer Documentation for UIColor)
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        celsiusLabel.text = "?"
-        celsiusLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.4, alpha: 0.5)
+        cTextField.text = nil
+        cTextField.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.4, alpha: 0.5)
     }
 
     
@@ -53,26 +55,43 @@ class ConversionViewController: UIViewController ,UITextFieldDelegate {
             fahrenheitValue = nil
         }
     }
+    @IBAction func celsiusFieldEditingChanged(_ cTextField: UITextField) {
+        if let text = cTextField.text, let value = Double(text) {
+            celsiusValue = Measurement(value: value, unit: .celsius)
+        } else {
+            fahrenheitValue = nil
+        }
+    }
+    
     //Stored Properties for Fahrenheit Temperature Measurement w/Observer
     var fahrenheitValue: Measurement<UnitTemperature>? {
         didSet { // this property observer will run after the property is assigned a value
-            updateCelsiusLabel()
+                updateCelsiusLabel()
         }
     }
     //Computed Property for Celsius Temperature Measurement (Read only property - getter without setter)
+    //Updated: Acts the same as fahrenheitValue
     var celsiusValue: Measurement<UnitTemperature>? {
-        if let fahrenheitValue = fahrenheitValue {
-            return fahrenheitValue.converted(to: .celsius)
-        } else {
-            return nil
+        didSet{
+            updateFahrenheitLabel()
         }
     }
+    
     // Helper Functions
     func updateCelsiusLabel() {
         if let celsiusValue = celsiusValue {
-            celsiusLabel.text = numberFormatter.string(from: NSNumber(value: celsiusValue.value))
+            cTextField.text = numberFormatter.string(from: NSNumber(value: celsiusValue.value))
         } else {
-            celsiusLabel.text = "???"
+            cTextField.text = "???"
+        }
+    }
+    
+    // Helper Functions
+    func updateFahrenheitLabel() {
+        if let fahrenheitValue = fahrenheitValue {
+            textField.text = numberFormatter.string(from: NSNumber(value: fahrenheitValue.value))
+        } else {
+            textField.text = "???"
         }
     }
     // Limits the number of decimal places in the output label to 1
