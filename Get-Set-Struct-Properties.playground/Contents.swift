@@ -31,7 +31,7 @@ struct Student{
             //TODO: Bonus: Fix so that this actually sets the password to a default
             let last4 = studentID.suffix(4)
             _password = "\(lastName)\(last4)"
-            return  "\(lastName)\(last4)"
+            return _password!
         }
         set{
             _password = newValue
