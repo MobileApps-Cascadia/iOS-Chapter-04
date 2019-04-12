@@ -22,7 +22,7 @@ struct Student{
     
     var fullName:String { return "\(firstName) \(lastName)"}
     var password:String {
-        get
+        mutating get
         {
             // Password has been set
             if let _password = _password { return _password }
@@ -30,7 +30,7 @@ struct Student{
             
             //TODO: Bonus: Fix so that this actually sets the password to a default
             let last4 = studentID.suffix(4)
-            //_password = "\(lastName)\(last4)"
+            _password = "\(lastName)\(last4)"
             return  "\(lastName)\(last4)"
         }
         set{
