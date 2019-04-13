@@ -3,7 +3,7 @@
 //
 
 import UIKit
-    // TODO: Mark the ViewController as conforming to the UITextFieldDelegate Protocol
+
 class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var fahrenheitTextField: UITextField!
@@ -49,10 +49,16 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     // TODO: Add and modify the method to build expectation for the output by changing the celsiusLabel when the input field is selected
     // modify the celsiusLabel text to be a single question mark
     // modify the celsiusLabel color to be 60% red, 60% green, and 40% blue (refer to the Developer Documentation for UIColor)
-    //func textFieldDidBeginEditing(_ textField: UITextField) {
-    //    celsiusLabel.textColor = UIColor.init(red: 0.60, green: 0.60, blue: 0.40, alpha: 100)
-    //    celsiusLabel.text = "?"
-    //}
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == celsiusTextField {
+            fahrenheitTextField.text = nil
+            fahrenheitValue = nil
+        }
+        if textField == fahrenheitTextField {
+            celsiusTextField.text = nil
+            celsiusValue = nil
+        }
+    }
     
     // EVENT HANDLER METHOD : Called when TextField is Changed (notice the optional binding)
     @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
@@ -96,8 +102,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
             celsiusTextField.text = numberFormatter.string(from: NSNumber(value: fVal.value))
         }
         else {
-            celsiusTextField.text = ""
-            fahrenheitTextField.text = ""
+            celsiusTextField.text = nil
+            fahrenheitTextField.text = nil
         }
     }
     // Limits the number of decimal places in the output label to 1
