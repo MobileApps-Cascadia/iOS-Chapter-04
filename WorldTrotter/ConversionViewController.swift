@@ -26,19 +26,15 @@ class ConversionViewController: UIViewController, UITextFieldDelegate{ //, UITex
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
         
-        let rawText = textField.text
-        let letters = CharacterSet.letters
+        //wkinda done the way you asked (maybe)
+        let replacementTextHasLetters = string.rangeOfCharacter(from: CharacterSet.letters)
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil{
+        if replacementTextHasLetters != nil || existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil{
             return false
         } else {
             return true
         }
         
-        if let cleanText = rawText?.rangeOfCharacter(from: letters){
-            return false
-        }
-        return true
         
     }
     // DELEGATE METHOD : textFieldDidBeginEditing - is called when the user selects the text field
