@@ -61,7 +61,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad"/>
                                 <connections>
-                                    <action selector="celsiusFieldEditingChanged:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="GB8-ZA-2wF"/>
+                                    <action selector="celsiusFieldEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="ZbK-fW-dG3"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="MRf-bN-bNU"/>
                                 </connections>
                             </textField>

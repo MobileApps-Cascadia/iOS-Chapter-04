@@ -48,8 +48,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate{ //, UITex
     }
     
     // EVENT HANDLER METHOD : Called when TextField is Changed (notice the optional binding)
-    @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
-        if let text = textField.text, let value = Double(text) {
+    @IBAction func fahrenheitFieldEditingChanged(_ fahrenheitTextField: UITextField) {
+        if let text = fahrenheitTextField.text, let value = Double(text) {
             fahrenheitValue = Measurement(value: value, unit: .fahrenheit)
         } else {
             fahrenheitValue = nil
@@ -78,14 +78,15 @@ class ConversionViewController: UIViewController, UITextFieldDelegate{ //, UITex
     }
     // Helper Functions
     func updateTemp() {
+        if let celsiusValue = celsiusValue {
+            let ctfValue = celsiusValue.converted(to: .fahrenheit)
+            fahrenheitTextField.text = numberFormatter.string(from: NSNumber(value: ctfValue.value))
+        }
         if let fahrenheitValue = fahrenheitValue{
-            let ctfValue = fahrenheitValue.converted(to: .celsius)
-            celsiusTextField.text = numberFormatter.string(from: NSNumber(value: ctfValue.value))
+            let ftcValue = fahrenheitValue.converted(to: .celsius)
+            celsiusTextField.text = numberFormatter.string(from: NSNumber(value: ftcValue.value))
         }
-        else if let celsiusValue = celsiusValue {
-            let ftcValue = celsiusValue.converted(to: .fahrenheit)
-            fahrenheitTextField.text = numberFormatter.string(from: NSNumber(value: ftcValue.value))
-        }
+        
     }
     // Limits the number of decimal places in the output label to 1
     let numberFormatter: NumberFormatter = {
