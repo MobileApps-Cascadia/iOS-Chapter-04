@@ -87,7 +87,7 @@
                     </view>
                     <connections>
                         <outlet property="celsiusTextField" destination="ELT-rd-c5N" id="g7T-am-kZ2"/>
-                        <outlet property="textField" destination="nEB-A3-sAJ" id="Rex-iT-f5z"/>
+                        <outlet property="fahrenheitTextField" destination="nEB-A3-sAJ" id="3Om-kj-zof"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
