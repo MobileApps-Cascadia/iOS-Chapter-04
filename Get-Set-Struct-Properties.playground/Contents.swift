@@ -44,7 +44,13 @@ struct Student{
         set{
             _password = newValue
         }
+        
     }
+    
+    var fullInfo:String {
+        return "User's information. Firstname: \(firstName), Lastname: \(_lastName) SID: \(studentID), Password: \(_password)."
+    }
+    
 }
 
 
@@ -56,5 +62,6 @@ print("Initial password: " + Ian.password)
 //Set Password
 Ian.password = "testPassword"
 Ian.password = "Fabul0_346"
-Ian.password = "Covid-19"
+Ian.password = "Covid-19_BAD"
 Ian.lastName = "Smith"
+print (Ian.fullInfo)
