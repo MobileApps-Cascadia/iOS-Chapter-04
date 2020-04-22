@@ -24,15 +24,12 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     //  (hint-use Documentation to find a NSCharacterSet collection for letters, and a String method that finds a range using a NSCharacterSet)
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        // This technique works for blocking special characters, emojis, etc in addition to letters:
-        let acceptableValues = NSCharacterSet.decimalDigits.union(CharacterSet(charactersIn: "."))
-        let replacementTextHasAcceptableValues = string.rangeOfCharacter(from: acceptableValues)
-        
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
+        let replacementTextHasAcceptableValues = string.rangeOfCharacter(from: NSCharacterSet.letters)
         
         if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil ||
-            replacementTextHasAcceptableValues == nil {
+            replacementTextHasAcceptableValues != nil {
             return false
         } else {
             return true
@@ -45,6 +42,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         celsiusLabel.text = "?"
         celsiusLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.4, alpha: 1)
+        
     }
     
     // EVENT HANDLER METHOD : Called when TextField is Changed (notice the optional binding)
