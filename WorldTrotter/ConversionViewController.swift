@@ -25,8 +25,14 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
+        let letters = NSCharacterSet.letters;
+//        print(textField.text ?? "nothing")
+//        print("About to add : \(string)")
+        let replacementTextHasLetters = string.rangeOfCharacter(from: letters)
+        let replacementTextHasSpace = string.range(of: " ")
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
+        
+        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil || replacementTextHasLetters != nil || replacementTextHasSpace != nil{
             return false
         } else {
             return true
