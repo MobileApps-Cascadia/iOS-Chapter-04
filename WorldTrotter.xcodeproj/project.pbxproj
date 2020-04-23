@@ -194,6 +194,7 @@
 				TargetAttributes = {
 					6BB4AB3F1B7A5D4200967615 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = DFVB576FM8;
 						LastSwiftMigration = 1020;
 					};
 					6BB4AB531B7A5D4200967615 = {
@@ -423,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DFVB576FM8;
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -436,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DFVB576FM8;
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
