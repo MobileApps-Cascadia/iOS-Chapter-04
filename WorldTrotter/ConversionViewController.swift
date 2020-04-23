@@ -38,11 +38,18 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     //  (hint-use Documentation to find a NSCharacterSet collection for letters, and a String method that finds a range using a NSCharacterSet)
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
-        let replacementTextHasDecimalSeparator = string.range(of: ".")
-        let replacementTextHasAcceptableValues = string.rangeOfCharacter(from: CharacterSet(charactersIn: "123456789."))
+        let existingTextHasDecimalSeparator = textField.text?.contains(".") ?? false
+        let replacementTextHasDecimalSeparator = string.contains(".")
+        let replacementTextHasAcceptableValues = string.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789."))
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil || replacementTextHasAcceptableValues == nil {
+        let char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b") == -92
+
+        if isBackSpace {
+            return true
+        }
+        
+        if existingTextHasDecimalSeparator && replacementTextHasDecimalSeparator || replacementTextHasAcceptableValues == nil {
             return false
         } else {
             return true
