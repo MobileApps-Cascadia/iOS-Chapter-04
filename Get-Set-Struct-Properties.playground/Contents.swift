@@ -48,7 +48,7 @@ struct Student{
     }
     
     var fullInfo:String {
-        return "User's information. Firstname: \(firstName), Lastname: \(_lastName) SID: \(studentID), Password: \(_password)."
+        return "User's information. Firstname: \(firstName), Lastname: \(_lastName!) SID: \(studentID), Password: \(_password)."
     }
     
 }
