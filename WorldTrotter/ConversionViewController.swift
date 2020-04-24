@@ -25,10 +25,14 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     //  (hint-use Documentation to find a NSCharacterSet collection for letters, and a String method that finds a range using a NSCharacterSet)
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
+        let replacementTextHasAlphanumerics = string.rangeOfCharacter(from: .alphanumerics)
+
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
+        
+        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil && replacementTextHasAlphanumerics != nil{
             return false
         } else {
             return true
