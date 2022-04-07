@@ -23,15 +23,24 @@ class ConversionViewController: UIViewController{ //, UITextFieldDelegate {
     //  (hint-use Documentation to find a NSCharacterSet collection for letters, and a String method that finds a range using a NSCharacterSet)
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+       //let letters = NSCharacterSet.letters
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
+        let replacementTextHasletters = string.rangeOfCharacter(from: .letters)
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
+        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil && replacementTextHasletters != nil{
             return false
         } else {
             return true
         }
     }
+    
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+            celsiusLabel.text = "?"
+            celsiusLabel.textColor = UIColor.init(red: 60/100, green: 60/100, blue: 40/100, alpha: 1.0)
+        }
+    
     // DELEGATE METHOD : textFieldDidBeginEditing - is called when the user selects the text field
     // TODO: Add and modify the method to build expectation for the output by changing the celsiusLabel when the input field is selected
     // modify the celsiusLabel text to be a single question mark

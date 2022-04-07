@@ -1,10 +1,17 @@
 // Create a Struct with Properties: firstName, lastName, fullname, (private) birthday, and age
+
+import Foundation
 struct Student{
     //Stored Properties
     var firstName:String
     var lastName:String
     var studentID:String
-    var _password:String? {
+    var _password:String?
+    private var birthday:Int?
+    static var now:Date {return Date.init()}
+    var _age:Int?
+    
+   {
         didSet{
             print("Your password was changed from \(oldValue) to \(_password!)")
         }
@@ -24,6 +31,9 @@ struct Student{
             _password = newValue
         }
     }
+    var age:Int {
+        let currDate = Calendar.dateComponents()
+        
 }
 
 var Ian = Student(firstName: "Ian", lastName:"Bansenauer", studentID: "920111123", _password: nil)
