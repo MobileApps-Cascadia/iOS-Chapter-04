@@ -4,7 +4,7 @@
 
 import UIKit
     // TODO: Mark the ViewController as conforming to the UITextFieldDelegate Protocol
-class ConversionViewController: UIViewController{ //, UITextFieldDelegate {
+class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
@@ -38,7 +38,7 @@ class ConversionViewController: UIViewController{ //, UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
             celsiusLabel.text = "?"
-            celsiusLabel.textColor = UIColor.init(red: 60/100, green: 60/100, blue: 40/100, alpha: 1.0)
+        celsiusLabel.textColor = UIColor.init(red: 0.6, green: 0.6, blue: 0.4, alpha: 1.0)
         }
     
     // DELEGATE METHOD : textFieldDidBeginEditing - is called when the user selects the text field
