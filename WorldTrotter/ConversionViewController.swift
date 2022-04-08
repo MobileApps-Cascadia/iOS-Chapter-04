@@ -28,7 +28,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         let replacementTextHasDecimalSeparator = string.range(of: ".")
         let replacementTextHasletters = string.rangeOfCharacter(from: .letters)
         
-        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil && replacementTextHasletters != nil{
+        if existingTextHasDecimalSeparator != nil || replacementTextHasDecimalSeparator != nil || replacementTextHasletters != nil{
             return false
         } else {
             return true
@@ -36,7 +36,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     }
     
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    @IBAction func textFieldDidBeginEditing(_ textField: UITextField) {
             celsiusLabel.text = "?"
         celsiusLabel.textColor = UIColor.init(red: 0.6, green: 0.6, blue: 0.4, alpha: 1.0)
         }
